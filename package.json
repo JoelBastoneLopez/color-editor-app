@@ -1,0 +1,41 @@
+{
+  "name": "color-editor-app",
+  "version": "1.0.0",
+  "description": "Editor de colores para configurador de valijas - TiendaNube FTP",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder -w -m",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.primicia.coloreditor",
+    "productName": "ColorEditor",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns",
+      "category": "public.app-category.developer-tools"
+    }
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "xlsx": "^0.18.5"
+  }
+}

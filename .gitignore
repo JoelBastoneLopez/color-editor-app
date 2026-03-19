@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+.env
+.DS_Store
+ftp_config.json
+*.json.key
+gcs-key.json
