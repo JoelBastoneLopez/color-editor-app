@@ -159,10 +159,16 @@ ipcMain.handle('ftp-upload', async (event, config, dataJson, newTplContent, newL
     }
 });
 
-ipcMain.handle('select-file', async () => {
+ipcMain.handle('select-file', async (event, type) => {
+    let filters;
+    if (type === 'excel') {
+        filters = [{ name: 'Excel', extensions: ['xlsx', 'xls', 'csv'] }];
+    } else {
+        filters = [{ name: 'Images', extensions: ['jpg', 'png', 'jpeg', 'webp'] }];
+    }
     const { canceled, filePaths } = await dialog.showOpenDialog({
         properties: ['openFile'],
-        filters: [{ name: 'Images', extensions: ['jpg', 'png', 'jpeg', 'webp'] }]
+        filters
     });
     if (canceled || filePaths.length === 0) return null;
     return filePaths[0];

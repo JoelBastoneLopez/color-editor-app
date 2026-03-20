@@ -653,7 +653,7 @@ function showEmptyState(title, sub) {
 
 // ─── EXCEL HELPER ─────────────────────────────────────────────────────────────
 async function handleImportExcel() {
-    const localPath = await window.api.selectFile();
+    const localPath = await window.api.selectFile('excel');
     if (!localPath) return;
 
     const statusEl = document.getElementById('excel-status');
@@ -714,10 +714,12 @@ async function handleImportExcel() {
     });
 
     colorData = newColorData;
-    renderColorCards();
+    renderGroupNav();
+    const firstGroup = Object.keys(colorData).find(k => colorData[k] && colorData[k].length > 0);
+    if (firstGroup) showEditor(firstGroup);
     showToast("✓ Importado correctamente desde " + localPath.split(/[\\/]/).pop(), "success");
     statusEl.textContent = "✓ Importado";
-    setTimeout(() => statusEl.style.display = 'none', 3000);
+    setTimeout(() => statusEl.style.display = 'none', 2000);
 }
 
 async function handleExportExcel() {
